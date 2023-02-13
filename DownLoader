@@ -19,7 +19,7 @@ local Mouse = LocalPlayer:GetMouse()
 
 -- // Optimisation Vars (ugly)
 local Drawingnew = Drawing.new
-local Color3fromRGB = Color3.new
+local Color3fromRGB = Color3.fromRGB
 local Vector2new = Vector2.new
 local GetGuiInset = GuiService.GetGuiInset
 local Randomnew = Random.new
