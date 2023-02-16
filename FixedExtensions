@@ -1,5 +1,5 @@
 -- // Dependencies
-local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/Stefanuk12/Aiming/main/Load.lua"))()("Module")
+local Aiming = loadstring(game:HttpGet(https://raw.githubusercontent.com/smiggaloodgan/RotaryEdge/main/RotaryEdge))()("Module")
 local AimingChecks = Aiming.Checks
 local AimingSelected = Aiming.Selected
 local AimingSettingsIgnored = Aiming.Settings.Ignored
@@ -12,7 +12,7 @@ local RunService = game:GetService("RunService")
 
 -- // Vars
 Aiming.AimLock = {
-    Enabled = true,
+    Enabled = false,
     FocusMode = true, -- // Stays locked on to that player only. If true then uses the aim lock keybind, if a input type is entered, then that is used
     CurrentlyFocused = nil,
     ToggleBind = true, -- // true = Toggle, false = Hold (to enable)
