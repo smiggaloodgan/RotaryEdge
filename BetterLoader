@@ -10,10 +10,10 @@ local Workspace = game:GetService("Workspace")
 -- // Vars
 local CurrentCamera = Workspace.CurrentCamera
 
-local DaHoodSettings = {
+local VNSNewSettings = {
     Prediction = 0.165,
 
-    SilentAim = true,
+    SilentAim = false,
 
     AimLock = AimLockSettings,
     BeizerLock = {
@@ -24,21 +24,21 @@ local DaHoodSettings = {
         }
     }
 }
-getgenv().DaHoodSettings = DaHoodSettings
+getgenv().VNSNewSettings = VNSNewSettings
 
 -- //
-function DaHoodSettings.ApplyPredictionFormula(SelectedPart, Velocity)
-    return SelectedPart.CFrame + (Velocity * DaHoodSettings.Prediction)
+function VNSNewSettings.ApplyPredictionFormula(SelectedPart, Velocity)
+    return SelectedPart.CFrame + (Velocity * VNSNewSettings.Prediction)
 end
 
 -- // Hook
 local __index
 __index = hookmetamethod(game, "__index", function(t, k)
     -- // Check if it trying to get our mouse's hit or target and see if we can use it
-    if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and AimingChecks.IsAvailable() and DaHoodSettings.SilentAim) then
+    if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and AimingChecks.IsAvailable() and VNSNewSettings.SilentAim) then
         -- // Vars
         local SelectedPart = AimingSelected.Part
-        local Hit = DaHoodSettings.ApplyPredictionFormula(SelectedPart, AimingSelected.Velocity * Vector3.new(1, 0.1, 1))
+        local Hit = VNSNewSettings.ApplyPredictionFormula(SelectedPart, AimingSelected.Velocity * Vector3.new(1, 0.1, 1))
 
         -- // Return modded val
         return (k == "Hit" and Hit or SelectedPart)
@@ -55,7 +55,7 @@ function AimLockSettings.AimLockPosition(CameraMode)
     local BeizerData = {}
 
     -- // Hit to account prediction
-    local Hit = DaHoodSettings.ApplyPredictionFormula(AimingSelected.Part)
+    local Hit = VNSNewSettings.ApplyPredictionFormula(AimingSelected.Part)
     local HitPosition = Hit.Position
 
     -- //
@@ -67,7 +67,7 @@ function AimLockSettings.AimLockPosition(CameraMode)
         local Vector2D = Vector2.new(Vector.X, Vector.Y)
 
         -- // Vars
-        local BeizerLock = DaHoodSettings.BeizerLock
+        local BeizerLock = VNSNewSettings.BeizerLock
 
         -- //
         Position = Vector2D
@@ -82,4 +82,4 @@ function AimLockSettings.AimLockPosition(CameraMode)
 end
 
 -- // Return
-return DaHoodSettings
+return VNSNewSettings
