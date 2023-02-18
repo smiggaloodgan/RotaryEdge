@@ -2,6 +2,7 @@
 -- Made by Stefunuk12 / GIVE Creds to him.
 
 --Script : 
+
 local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/smiggaloodgan/RotaryEdge/main/DownLoader"))()
 Aiming.TeamCheck(false)
 
@@ -39,7 +40,7 @@ function Aiming.Check()
 end
 
 local __index
-__index = hookmetamethod(game, "__index", function(t, k)
+__index = hookmetamethod(game, "__index", function(t,k) 
     if (t:IsA("Mouse") and (k == "Hit" or k == "Target") and Aiming.Check()) then
         local SelectedPart = Aiming.SelectedPart
 
@@ -54,7 +55,7 @@ __index = hookmetamethod(game, "__index", function(t, k)
 end)
 
 RunService:BindToRenderStep("AimLock", 0, function()
-    if (DaHoodSettings.AimLock and Aiming.Check() and UserInputService:IsKeyDown(DaHoodSettings.AimLockKeybind)) then
+    if (DaHoodSettings.AimLock and Aiming.Check() and UserInputService:IsKeyDown(DaHoodSettings.AimLockKeybind)) and not game:GetService('UserInputService'):GetFocusedTextBox() then
         local SelectedPart = Aiming.SelectedPart
 
         local Hit = SelectedPart.CFrame + (SelectedPart.Velocity * DaHoodSettings.Prediction)
