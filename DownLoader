@@ -1,8 +1,9 @@
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
--- Made by Stefunuk12 / Give creds to him.
+-- Made by Stefunuk12 / I gave creds to him in UI.
 
 --Script :
+
 if getgenv().Aiming then return getgenv().Aiming end
 
 -- // Services
@@ -17,9 +18,9 @@ local LocalPlayer = Players.LocalPlayer
 local CurrentCamera = Workspace.CurrentCamera
 local Mouse = LocalPlayer:GetMouse()
 
--- // Optimisation Vars
+-- // Optimisation Vars (ugly)
 local Drawingnew = Drawing.new
-local Color3fromRGB = Color3.new
+local Color3fromRGB = Color3.fromRGB
 local Vector2new = Vector2.new
 local GetGuiInset = GuiService.GetGuiInset
 local Randomnew = Random.new
@@ -40,21 +41,21 @@ local tableinsert = table.insert
 
 -- // Silent Aim Vars
 getgenv().Aiming = {
-    Enabled = false,
+    Enabled = true,
 
     ShowFOV = false,
-    FOV = 55,
-    FOVSides = 35,
-    FOVColor = Color3.new(1,1,1),
+    FOV = 119,
+    FOVSides = 300,
+    FOVColour = Color3fromRGB(0, 0, 0),
 
     VisibleCheck = true,
     
-    HitChance = 110,
+    HitChance = 100,
 
     Selected = nil,
     SelectedPart = nil,
 
-    TargetPart = {"Head", "UpperTorso", "HumanoidRootPart", "LowerTorso"},
+    TargetPart = {"Head", "HumanoidRootPart"},
 
     Ignored = {
         Teams = {
@@ -64,7 +65,8 @@ getgenv().Aiming = {
             },
         },
         Players = {
-            LocalPlayer
+            LocalPlayer,
+            91318356
         }
     }
 }
@@ -74,7 +76,7 @@ local Aiming = getgenv().Aiming
 local circle = Drawingnew("Circle")
 circle.Transparency = 1
 circle.Thickness = 2
-circle.Color = Aiming.FOVColor
+circle.Color = Aiming.FOVColour
 circle.Filled = false
 Aiming.FOVCircle = circle
 
@@ -90,7 +92,7 @@ function Aiming.UpdateFOV()
     circle.Radius = (Aiming.FOV * 3)
     circle.Position = Vector2new(Mouse.X, Mouse.Y + GetGuiInset(GuiService).Y)
     circle.NumSides = Aiming.FOVSides
-    circle.Color = Aiming.FOVColor
+    circle.Color = Aiming.FOVColour
 
     -- // Return circle
     return circle
