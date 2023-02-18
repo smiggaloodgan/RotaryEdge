@@ -2,7 +2,7 @@
 -- Made by Stefunuk12 / GIVE Creds to him.
 
 --Script : 
-local Aiming = loadstring(game:HttpGet(""))()
+local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/smiggaloodgan/RotaryEdge/main/BetterLoader"))()
 
 Aiming.TeamCheck(false)
 
