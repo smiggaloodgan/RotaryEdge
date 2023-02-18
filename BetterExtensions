@@ -19,6 +19,8 @@ local Players = game:GetService('Players')
 local RunService = game:GetService('RunService')
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
+local HoldClick = true
+local CurrentlyPressed = false
 
 
 ---------------------------------------------------------------
@@ -33,6 +35,8 @@ local DaHoodSettings = {
     AimLockKeybind = Enum.KeyCode.E, -- Keybind
 
     Resolver = false, -- Resolver
+    
+    Toggle = false, -- TriggerBot
     
 }
 --------------------------------------------------
@@ -179,34 +183,8 @@ end)
 
 
 
--- Settings
-local HoldClick = true
-local Hotkey = 'h' -- Leave blank for always on
-local HotkeyToggle = true -- True if you want it to toggle on and off with a click
+-- TriggerBot
 
-local Players = game:GetService('Players')
-local RunService = game:GetService('RunService')
-
-local LocalPlayer = Players.LocalPlayer
-local Mouse = LocalPlayer:GetMouse()
-
-local Toggle = (Hotkey ~= '')
-local CurrentlyPressed = false
-
-Mouse.KeyDown:Connect(function(key)
-	if HotkeyToggle == true and key == Hotkey and not game:GetService('UserInputService'):GetFocusedTextBox() then
-		Toggle = not Toggle
-	elseif 
-		key == Hotkey then
-		Toggle = true
-	end
-end)
-
-Mouse.KeyUp:Connect(function(key)
-	if HotkeyToggle ~= true and key == Hotkey and not game:GetService('UserInputService'):GetFocusedTextBox() then
-		Toggle = false
-	end
-end)
 
 RunService.RenderStepped:Connect(function()
 	if Toggle then
