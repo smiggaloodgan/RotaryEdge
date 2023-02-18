@@ -8,6 +8,7 @@ if getgenv().Aiming then return getgenv().Aiming end
 
 -- // Services
 local Players = game:GetService("Players")
+local Player = Players
 local Workspace = game:GetService("Workspace")
 local GuiService = game:GetService("GuiService")
 local RunService = game:GetService("RunService")
@@ -42,7 +43,6 @@ local tableinsert = table.insert
 -- // Silent Aim Vars
 getgenv().Aiming = {
     Enabled = false,
-
     ShowFOV = false,
     FOV = 55,
     FOVSides = 35,
@@ -65,7 +65,7 @@ getgenv().Aiming = {
             },
         },
         Players = {
-            LocalPlayer,
+            game.Players.LocalPlayer.UserId,
         }
     }
 }
