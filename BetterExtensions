@@ -187,10 +187,10 @@ end)
 
 
 RunService.RenderStepped:Connect(function()
-	if Toggle then
+	while Toggle == true do
 		if Mouse.Target then
 			if Mouse.Target.Parent:FindFirstChild('Humanoid') then
-				if HoldClick then
+				if HoldClick == true then
 					if not CurrentlyPressed then
 						CurrentlyPressed = true
 						mouse1press()
@@ -199,7 +199,7 @@ RunService.RenderStepped:Connect(function()
 					mouse1click()
 				end
 			else
-				if HoldClick then
+				if HoldClick == true then
 					CurrentlyPressed = false
 					mouse1release()
 				end
