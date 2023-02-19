@@ -187,7 +187,7 @@ end)
 
 
 RunService.RenderStepped:Connect(function()
-	if Toggle then
+	while Toggle do
 		if Mouse.Target then
 			if Mouse.Target.Parent:FindFirstChild('Humanoid') then
 				if HoldClick then
