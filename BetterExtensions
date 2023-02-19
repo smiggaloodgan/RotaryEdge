@@ -19,9 +19,6 @@ local Players = game:GetService('Players')
 local RunService = game:GetService('RunService')
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
-local HoldClick = true
-local CurrentlyPressed = false
-
 
 ---------------------------------------------------------------
 local DaHoodSettings = {
@@ -35,8 +32,6 @@ local DaHoodSettings = {
     AimLockKeybind = Enum.KeyCode.E, -- Keybind
 
     Resolver = false, -- Resolver
-    
-    Toggle = false, -- TriggerBot
     
 }
 --------------------------------------------------
@@ -183,27 +178,4 @@ end)
 
 
 
--- TriggerBot
 
-
-RunService.RenderStepped:Connect(function()
-	while Toggle do
-		if Mouse.Target then
-			if Mouse.Target.Parent:FindFirstChild('Humanoid') then
-				if HoldClick then
-					if not CurrentlyPressed then
-						CurrentlyPressed = true
-						mouse1press()
-					end
-				else
-					mouse1click()
-				end
-			else
-				if HoldClick then
-					CurrentlyPressed = false
-					mouse1release()
-				end
-			end
-		end
-	end
-end)
