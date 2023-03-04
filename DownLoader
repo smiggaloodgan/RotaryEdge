@@ -19,7 +19,7 @@ local LocalPlayer = Players.LocalPlayer
 local CurrentCamera = Workspace.CurrentCamera
 local Mouse = LocalPlayer:GetMouse()
 
--- // Optimisation Vars (ugly)
+-- // Optimisation Vars
 local Drawingnew = Drawing.new
 local Color3fromRGB = Color3.fromRGB
 local Vector2new = Vector2.new
@@ -45,8 +45,6 @@ getgenv().Aiming = {
     Enabled = false,
     ShowFOV = false,
     FOV = 55,
-    FOVThickness = 1,
-    FOVFilled = false,
     FOVColor = Color3fromRGB(255, 255, 255),
 
     VisibleCheck = true,
@@ -72,7 +70,7 @@ getgenv().Aiming = {
 }
 local Aiming = getgenv().Aiming
 
--- // Create circle
+-- // Create fov circle
 local circle = Drawingnew("Circle")
 circle.Transparency = 1
 circle.Thickness = Aiming.FOVThickness
@@ -80,22 +78,16 @@ circle.Color = Aiming.FOVColor
 circle.Filled = Aiming.FOVFilled
 Aiming.FOVCircle = circle
 
--- // Update
+-- // Update fov circle
 function Aiming.UpdateFOV()
-    -- // Make sure the circle exists
     if not (circle) then
         return
     end
-
-    -- // Set Circle Properties
     circle.Visible = Aiming.ShowFOV
     circle.Radius = (Aiming.FOV * 3)
     circle.Position = Vector2new(Mouse.X, Mouse.Y + GetGuiInset(GuiService).Y)
     circle.NumSides = Aiming.FOVSides
-    circle.Filled = Aiming.FOVFilled
-    circle.Thickness = Aiming.FOVThickness
     circle.Color = Aiming.FOVColor
-    -- // Return circle
     return circle
 end
 
