@@ -1,16 +1,16 @@
---Settings--
+--Settings1
 local ESP = {
     Enabled = true,
     Boxes = false,
     BoxShift = CFrame.new(0,-1.5,0),
 	BoxSize = Vector3.new(4,6,0),
-    Color = Color3.fromRGB(0, 255, 0),
+    Color = Color3.fromRGB(255, 255, 255),
     FaceCamera = false,
     Names = false,
-    TeamColor = true,
+    TeamColor = false,
     Thickness = 2,
     AttachShift = 1,
-    TeamMates = true,
+    TeamMates = false,
     Players = true,
     
     Objects = setmetatable({}, {__mode="kv"}),
@@ -235,7 +235,7 @@ function boxBase:Update()
             
             self.Components.Distance.Visible = true
             self.Components.Distance.Position = Vector2.new(TagPos.X, TagPos.Y + 14)
-            self.Components.Distance.Text = self.DisplayName
+            self.Components.Distance.Text = self.Character.Health
             self.Components.Distance.Color = color
         else
             self.Components.Name.Visible = false
@@ -297,14 +297,14 @@ function ESP:Add(obj, options)
 		Text = box.Name,
 		Color = box.Color,
 		Center = true,
-		Outline = false,
+		Outline = true,
         Size = 19,
         Visible = self.Enabled and self.Names
 	})
 	box.Components["Distance"] = Draw("Text", {
 		Color = box.Color,
 		Center = true,
-		Outline = false,
+		Outline = true,
         Size = 19,
         Visible = self.Enabled and self.Names
 	})
@@ -380,7 +380,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
     for i,v in (ESP.Enabled and pairs or ipairs)(ESP.Objects) do
         if v.Update then
             local s,e = pcall(v.Update, v)
-            if not s then warn("[EU]", e, v.Object:GetFullName()) end
+            if not s then warn("[]", e, v.Object:GetFullName()) end
         end
     end
 end)
