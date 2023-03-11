@@ -4,7 +4,7 @@ local ESP = {
     Boxes = false,
     BoxShift = CFrame.new(0,-1.5,0),
 	BoxSize = Vector3.new(4,6,0),
-    Color = Color3.fromRGB(0, 255, 0),
+    Color = Color3.fromRGB(255, 255, 255),
     FaceCamera = false,
     Names = false,
     TeamColor = true,
@@ -233,17 +233,17 @@ function boxBase:Update()
             self.Components.Name.Text = self.Name
             self.Components.Name.Color = color
             
-            self.Components.DisplayName.Visible = true
-            self.Components.DisplayName.Position = Vector2.new(TagPos.X, TagPos.Y + 14)
-            self.Components.DisplayName.Text = self.DisplayName
-            self.Components.DisplayName.Color = color
+            self.Components.Name2.Visible = true
+            self.Components.Name2.Position = Vector2.new(TagPos.X, TagPos.Y + 14)
+            self.Components.Name2.Text = self.DisplayName
+            self.Components.Name2.Color = color
         else
             self.Components.Name.Visible = false
-            self.Components.DisplayName.Visible = false
+            self.Components.Name2.Visible = false
         end
     else
         self.Components.Name.Visible = false
-        self.Components.DisplayName.Visible = false
+        self.Components.Name2.Visible = false
     end
     
     if ESP.Tracers then
@@ -301,7 +301,7 @@ function ESP:Add(obj, options)
         Size = 19,
         Visible = self.Enabled and self.Names
 	})
-	box.Components["DisplayName"] = Draw("Text", {
+	box.Components["Name2"] = Draw("Text", {
 		Color = box.Color,
 		Center = true,
 		Outline = true,
