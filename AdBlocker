@@ -1,4 +1,4 @@
--- Credits To Owner, This Script Was Just Edited. 1
+-- Credits To Owner, This Script Was Just Edited.
 
 --Settings--
 local ESP = {
@@ -296,7 +296,6 @@ function ESP:Add(obj, options)
     })
     box.Components["Name"] = Draw("Text", {
 		Text = box.Name,
-        Font = Enum.Font.GothamBold
 		Color = box.Color,
 		Center = true,
 		Outline = true,
@@ -305,7 +304,6 @@ function ESP:Add(obj, options)
 	})
 	box.Components["RegName"] = Draw("Text", {
 		Color = box.Color,
-        Font = Enum.Font.GothamBold
 		Center = true,
 		Outline = true,
         Size = 19,
