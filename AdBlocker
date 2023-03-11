@@ -1,4 +1,4 @@
---Settings--
+--BetterSettings--
 local ESP = {
     Enabled = true,
     Boxes = false,
@@ -8,9 +8,9 @@ local ESP = {
     FaceCamera = false,
     Names = false,
     TeamColor = true,
-    Thickness = 1,
+    Thickness = 2,
     AttachShift = 1,
-    TeamMates = false,
+    TeamMates = true,
     Players = true,
     
     Objects = setmetatable({}, {__mode="kv"}),
@@ -148,6 +148,7 @@ end
 
 function boxBase:Update()
     if not self.PrimaryPart then
+        --warn("not supposed to print", self.Object)
         return self:Remove()
     end
 
@@ -185,6 +186,8 @@ function boxBase:Update()
     if ESP.Highlighted == self.Object then
         color = ESP.HighlightColor
     end
+
+    --calculations--
     local cf = self.PrimaryPart.CFrame
     if ESP.FaceCamera then
         cf = CFrame.new(cf.p, cam.CFrame.p)
@@ -230,9 +233,9 @@ function boxBase:Update()
             self.Components.Name.Text = self.Name
             self.Components.Name.Color = color
             
-            self.Components.Distance.Visible = true
+            self.Components.Distance.Visible = false
             self.Components.Distance.Position = Vector2.new(TagPos.X, TagPos.Y + 14)
-            self.Components.Distance.Text = math.floor((cam.CFrame.p - cf.p).magnitude) .."m away"
+            self.Components.Distance.Text = ""
             self.Components.Distance.Color = color
         else
             self.Components.Name.Visible = false
@@ -261,7 +264,7 @@ end
 
 function ESP:Add(obj, options)
     if not obj.Parent and not options.RenderInNil then
-        return warn(obj, "Has No Parent.")
+        return warn(obj, "Doesnt have a parent.")
     end
 
     local box = setmetatable({
@@ -294,8 +297,8 @@ function ESP:Add(obj, options)
 		Text = box.Name,
 		Color = box.Color,
 		Center = true,
-		Outline = true,
-        Size = 19,
+		Outline = false,
+        Size = 18,
         Visible = self.Enabled and self.Names
 	})
 	box.Components["Distance"] = Draw("Text", {
@@ -303,7 +306,7 @@ function ESP:Add(obj, options)
 		Center = true,
 		Outline = true,
         Size = 19,
-        Visible = self.Enabled and self.Names
+        Visible = false
 	})
 	
 	box.Components["Tracer"] = Draw("Line", {
@@ -377,7 +380,7 @@ game:GetService("RunService").RenderStepped:Connect(function()
     for i,v in (ESP.Enabled and pairs or ipairs)(ESP.Objects) do
         if v.Update then
             local s,e = pcall(v.Update, v)
-            if not s then warn("", e, v.Object:GetFullName()) end
+            if not s then warn("[EU]", e, v.Object:GetFullName()) end
         end
     end
 end)
