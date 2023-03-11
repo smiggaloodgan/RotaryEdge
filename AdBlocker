@@ -230,20 +230,13 @@ function boxBase:Update()
         if Vis5 then
             self.Components.Name.Visible = true
             self.Components.Name.Position = Vector2.new(TagPos.X, TagPos.Y)
-            self.Components.Name.Text = self.Name
+            self.Components.Name.Text = self.DisplayName
             self.Components.Name.Color = color
-            
-            self.Components.Name2.Visible = true
-            self.Components.Name2.Position = Vector2.new(TagPos.X, TagPos.Y + 14)
-            self.Components.Name2.Text = self.DisplayName
-            self.Components.Name2.Color = color
         else
             self.Components.Name.Visible = false
-            self.Components.Name2.Visible = false
         end
     else
         self.Components.Name.Visible = false
-        self.Components.Name2.Visible = false
     end
     
     if ESP.Tracers then
@@ -294,14 +287,7 @@ function ESP:Add(obj, options)
         Visible = self.Enabled and self.Boxes
     })
     box.Components["Name"] = Draw("Text", {
-		Text = box.Name,
-		Color = box.Color,
-		Center = true,
-		Outline = true,
-        Size = 19,
-        Visible = self.Enabled and self.Names
-	})
-	box.Components["Name2"] = Draw("Text", {
+		Text = box.DisplayName,
 		Color = box.Color,
 		Center = true,
 		Outline = true,
